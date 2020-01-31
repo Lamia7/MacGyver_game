@@ -1,5 +1,5 @@
 import pygame
-#from map import Map
+from map import Map
 import config
 
 pygame.init()
@@ -49,3 +49,8 @@ while main_loop:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 game_loop = False
                 main_loop = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                # Launches the map
+                map = Map()
+                map.load_from_file()
+                map.display(window)

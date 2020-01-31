@@ -3,6 +3,8 @@
 
 from position import Position
 import random
+import config as conf
+import pygame
 
 class Map:
     """Class that contains the map and manages structure, random items positions"""
@@ -23,6 +25,35 @@ class Map:
                 self.structure_map.append(lines_list)
 
             #return structure_map
+
+    def display(self, window):
+        """Method that displays the graphic part of the map"""
+        walls = pygame.image.load(conf.WALLS).convert()
+        start = pygame.image.load(conf.HERO).convert()
+        arrival = pygame.image.load(conf.GUARDIAN).convert_alpha()
+
+
+        line = 0
+        for line_list in self.structure_map: #
+            col = 0
+            for caract in line_list:
+
+                if caract == 'T':
+                    window.blit(walls(Position, (line, col)))
+                elif caract == 'S':
+                    window.blit(start(Position, (line, col)))
+                elif caract == 'A':
+                    window.blit(arrival(Position, (line, col)))
+
+                col += 1
+            line += 1
+
+        self.window.blit()
+        pygame.display.flip()
+
+
+        return Position(line, col)
+
 
     def get_player_start_pos(self):
         # se positionne en random dans un S
