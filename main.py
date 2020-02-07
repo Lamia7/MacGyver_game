@@ -5,6 +5,7 @@
 import pygame
 from map import Map
 import config as conf
+from hero import Hero
 
 pygame.init()
 
@@ -21,6 +22,7 @@ while main_loop:
     home = pygame.image.load(conf.HOME).convert()
     home = pygame.transform.scale(home, (conf.WINDOW_SIZE, conf.WINDOW_SIZE))
     window.blit(home, (0, 0)) #draws home image in window
+    hero = pygame.image.load(conf.HERO).convert()
 
     #Refresh
     pygame.display.flip()
@@ -46,6 +48,10 @@ while main_loop:
 
         pygame.display.flip()
 
+    map = Map()
+    map.load_from_file()
+    hero = Hero(map.structure_map)
+
     #Game loop
     while game_loop:
 
@@ -59,9 +65,15 @@ while main_loop:
                 game_loop = False
                 main_loop = False
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                pass
                 # Launches the map
-                map = Map()
-                map.load_from_file()
-                map.display(window)
+                #map.display(window)
 
-        #pygame.display.flip()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+                hero.move('UP')
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                hero.move('DOWN')
+
+        window.blit(map.paths, (0, 0))
+        map.display(window)
+        pygame.display.flip()

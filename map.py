@@ -15,6 +15,8 @@ class Map:
     def __init__(self):
         self.structure_map = []  # pr que meth get_play reconnaisse
         self.load_from_file()  # pr faire appel à load dès que j'appelle Map()
+        self.paths = pygame.image.load(conf.BACKGROUND).convert()
+        self.paths = pygame.transform.scale(self.paths, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
 
     def load_from_file(self):
         """Method that generates the map from the file that contains the level"""
@@ -36,14 +38,14 @@ class Map:
         walls = pygame.transform.scale(walls, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
         start = pygame.image.load(conf.HERO).convert()
         start = pygame.transform.scale(start, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
-        paths = pygame.image.load(conf.BACKGROUND).convert()
-        paths = pygame.transform.scale(paths, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
+        self.paths = pygame.image.load(conf.BACKGROUND).convert()
+        self.paths = pygame.transform.scale(self.paths, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
         arrival = pygame.image.load(conf.GUARDIAN).convert_alpha()
         arrival = pygame.transform.scale(arrival, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
 
         pygame.display.set_caption("Macgyver Labyrinth Game")
 
-        pygame.display.flip()
+        #pygame.display.flip()
 
         #return window, background
 
@@ -59,13 +61,13 @@ class Map:
                 elif caract == 'A':
                     window.blit(arrival, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
                 else:
-                    window.blit(paths, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
+                    window.blit(self.paths, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
 
                 #col += 1
             #line += 1
 
             # self.window.blit()
-            pygame.display.flip()
+            #pygame.display.flip()
 
         return x, y
 
