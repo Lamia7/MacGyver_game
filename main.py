@@ -1,21 +1,26 @@
+#! /usr/bin/env python3
+# coding: utf-8
+
+"""Module that launches the game"""
 import pygame
 from map import Map
-import config
+import config as conf
 
 pygame.init()
 
 #Displays window
-window = pygame.display.set_mode((700, 700))
+window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
 #Displays title of window
-pygame.display.set_caption("Macgyver Labyrinthe Game")
+pygame.display.set_caption("Macgyver Labyrinth Game")
 
 main_loop = True
 
 #Main loop
 while main_loop:
     #Loads and displays homepage
-    home = pygame.image.load(config.HOME).convert()
-    window.blit(home, (0,0)) #draws home image in window
+    home = pygame.image.load(conf.HOME).convert()
+    home = pygame.transform.scale(home, (conf.WINDOW_SIZE, conf.WINDOW_SIZE))
+    window.blit(home, (0, 0)) #draws home image in window
 
     #Refresh
     pygame.display.flip()
@@ -39,8 +44,12 @@ while main_loop:
                 home_loop = False
                 game_loop = True
 
+        pygame.display.flip()
+
     #Game loop
     while game_loop:
+
+        window.fill((0, 0, 0))
 
         # Speed loop limit
         pygame.time.Clock().tick(30)
@@ -54,3 +63,5 @@ while main_loop:
                 map = Map()
                 map.load_from_file()
                 map.display(window)
+
+        #pygame.display.flip()
