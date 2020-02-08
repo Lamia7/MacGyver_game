@@ -8,7 +8,6 @@ import random
 import config as conf
 import pygame
 
-
 class Map:
     """Class that contains the map and manages structure, random items positions"""
 
@@ -32,10 +31,8 @@ class Map:
 
     def display(self, window):
         """Method that displays the graphic part of the map"""
-        #Loads image
-        walls = pygame.image.load(conf.WALLS).convert()
-        #Resize image according to sprite size
-        walls = pygame.transform.scale(walls, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
+        walls = pygame.image.load(conf.WALLS).convert() #Loads the image
+        walls = pygame.transform.scale(walls, (conf.SPRITE_SIZE, conf.SPRITE_SIZE)) #Resize image according to sprite size
         start = pygame.image.load(conf.HERO).convert()
         start = pygame.transform.scale(start, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
         self.paths = pygame.image.load(conf.BACKGROUND).convert()
@@ -49,9 +46,9 @@ class Map:
 
         #return window, background
 
-        #line = 0
+        #Displays images according to map structure and positions
         for y, line_list in enumerate(self.structure_map):  #
-            #col = 0
+
             for x, caract in enumerate(line_list):
                 print((x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE), y)
                 if caract == 'T':
@@ -70,6 +67,10 @@ class Map:
             #pygame.display.flip()
 
         return x, y
+
+    def update_map(self, position):
+        """Method that updates the map after the hero moves."""
+
 
 
 def get_player_start_pos(self):
@@ -100,3 +101,5 @@ def get_item_position(self):
         line = line + 1
 
     return random.choice(valid_positions)
+
+
