@@ -6,6 +6,7 @@ import pygame
 from map import Map
 import config as conf
 from hero import Hero
+from item import Item
 
 pygame.init()
 
@@ -52,7 +53,10 @@ while main_loop:
     map = Map()
     map.load_from_file()
     map.display(window)
-    hero = Hero(map.structure_map)
+    hero = Hero(map.structure_map) #pourquoi ?
+    item = Item(map.structure_map)
+    item.add_items()
+    item.get_items_positions()
 
     #Game loop
     while game_loop:
@@ -85,4 +89,6 @@ while main_loop:
         map.display(window)
         window.blit(hero_image, (hero.x, hero.y))
         pygame.display.flip()
+
+
 

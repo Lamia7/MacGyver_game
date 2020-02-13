@@ -2,7 +2,7 @@
 # coding: utf-8
 
 from map import Map
-from config import SPRITE_SIZE, NUMBER_SPRITE, HERO
+from config import SPRITE_SIZE, NUMBER_SPRITE
 import pygame
 
 class Hero:
@@ -27,7 +27,7 @@ class Hero:
         self.direction = direction
         #MOVE UP
         if direction == 'UP':
-            if self.y > 0:
+            if self.caract_y > 0:
                 if self.structure[self.caract_y - 1][self.caract_x] != 'T':
                     self.caract_y -= 1
                     self.y = self.caract_y * SPRITE_SIZE
