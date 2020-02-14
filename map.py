@@ -22,6 +22,14 @@ class Map:
         #self.get_item_position()
         self.x = None
         self.y = None
+        self.items_positions = []
+        self.full_map = []
+
+    def create_items_list(self):
+        """Method that adds items in a list"""
+        i = 0
+        for i in range(0, self.item_numbers):
+            self.items_list.insert(i, Item(self))
 
     def load_from_file(self):
         """Method that generates the map from the file that contains the level"""
@@ -46,7 +54,11 @@ class Map:
         arrival = pygame.image.load(conf.GUARDIAN).convert_alpha()
         arrival = pygame.transform.scale(arrival, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
         item0 = pygame.image.load(conf.ITEM0).convert()
-        item0 = pygame.transform.scale((item0), (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
+        item0 = pygame.transform.scale(item0, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
+        item1 = pygame.image.load(conf.ITEM1).convert()
+        item1 = pygame.transform.scale(item1, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
+        item2 = pygame.image.load(conf.ITEM2).convert()
+        item2 = pygame.transform.scale(item2, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
 
         pygame.display.set_caption("Macgyver Labyrinth Game")
 
@@ -67,6 +79,10 @@ class Map:
                     window.blit(arrival, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
                 elif caract == "O0":
                     window.blit(item0, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
+                elif caract == "O1":
+                    window.blit(item1, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
+                elif caract == "O2":
+                    window.blit(item2, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
                 else:
                     window.blit(self.paths, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
 
@@ -77,12 +93,6 @@ class Map:
             #pygame.display.flip()
 
         #return x, y
-
-    def create_items_list(self):
-        """Method that adds items in a list"""
-        i = 0
-        for i in range(0, self.item_numbers):
-            self.items_list.insert(i, Item(self, i))
 
     def update_map(self, position):
         """Method that updates the map after the hero moves."""
@@ -114,16 +124,3 @@ class Map:
                 line = line + 1
             return random.choice(valid_positions)
 
-"""    def get_item_position(self):
-        line = 0
-        col = 0
-        valid_positions = []
-        for line_list in self.structure_map:
-            for caract in line_list:
-                if caract == 'o':
-                    valid_positions.append(Position(line, col))
-                else:
-                    col = col + 1
-            line = line + 1
-
-        return random.choice(valid_positions)"""

@@ -11,14 +11,19 @@ class Item:
         self.i = ""
         #self.map = Map() non  car ca recrée
         self.structure = structure_map
-        self.add_items()
+        self.add_items(structure_map)
+        self.url = ""
+        self.get_items_positions()
+        self.map = map
 
-    def add_items(self):
+    def add_items(self, structure_map):
         """Method that randomly generates items in paths on the map"""
+        self.structure = structure_map
+
         i = True
         while i:
             random_x = random.randint(0, len(self.structure) - 1)
-            random_y = random.randint(0, len(self.structure) -1)
+            random_y = random.randint(0, len(self.structure) - 1)
             if self.structure[random_x][random_y] == "o":
                 self.structure[random_x][random_y] = "I" + str(self.i)
                 i = False
@@ -26,3 +31,6 @@ class Item:
     def get_items_positions(self):
         items_position = (self.random_x, self.random_y)
         return items_position
+
+
+
