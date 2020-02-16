@@ -14,6 +14,7 @@ class Hero:
         self.caract_x = 0
         self.caract_y = 0
         self.structure = structure
+        self.items_collect = 0
         #self.hero_img = pygame.image.load(HERO).convert_alpha()
         #self.position = ()
         #self.move()

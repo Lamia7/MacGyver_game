@@ -53,15 +53,24 @@ while main_loop:
     #Initializing the map
     map = Map()
     map.load_from_file()
+    map.create_items_list()
+
+    #Initializing the items
+    item = Item(map.structure_map)
+    #item.add_items(map.structure_map)
+    item.add_items()
+    item.get_items_positions()
+
+    #map.create_items_list()
+
     map.display(window)
 
     #Initializing the hero
     hero = Hero(map.structure_map)
 
-    #Initializing the items
-    item = Item(map.structure_map)
-    item.add_items(map.structure_map)
-    item.get_items_positions()
+    pygame.display.flip()
+
+
 
     #Game loop
     while game_loop:
