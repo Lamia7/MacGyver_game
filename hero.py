@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-from map import Map
+#from map import Map
 from config import SPRITE_SIZE, NUMBER_SPRITE
 import pygame
 
