@@ -9,9 +9,13 @@ BACKGROUND = "images/background.jpg"
 WALLS = "images/walls.png"
 HERO = "images/hero.png"
 GUARDIAN = "images/guardian.png"
-ITEM0 = "images/needle.png"
-ITEM1 = "images/ether.png"
-ITEM2 = "images/tube.png"
+needle = "images/needle.png"
+ether = "images/ether.png"
+tube = "images/tube.png"
+
+"""items = {"ether": "images/needle.png",
+         "needle": "images/needle.png",
+         "tube": "images/tube.png"}"""
 
 #Screen
 SPRITE_SIZE = 30
