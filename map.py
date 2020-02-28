@@ -24,7 +24,7 @@ class Map:
         self.y = 0
         self.load_from_file()  # pr faire appel à load dès que j'appelle Map()
         self.create_items_list() #map appelle ici mes items
-        self.items_positions = []
+        self.items_positions = []  ##PQUOI?
 
         #self.full_map = []
         #self.hero = Hero(self)
@@ -33,9 +33,12 @@ class Map:
         """Method that adds items in a list"""
 
         for i in range(self.item_numbers):
-            self.items_list.append(Item(self))  #Item(self) le self correspond à classe en cours (map)
+            self.items_list.append(Item(self))  # Item(self) le self correspond à classe en cours (map)
 
             return self.items_list
+
+        for i in self.items_list:
+            print(self.items_list[i])
 
     def load_from_file(self):
         """Method that generates the map from the file that contains the level"""
@@ -81,6 +84,7 @@ class Map:
                     window.blit(arrival, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
                 else:
                     window.blit(self.paths, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
+
 
 
                 #col += 1

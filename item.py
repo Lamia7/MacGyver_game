@@ -7,9 +7,10 @@ from config import SPRITE_SIZE, NUMBER_SPRITE
 import pygame
 import config as conf
 
+
 class Item:
 
-    #items = [] pr ne pas ajouter ds main les 3 créations d'item ac append, un par un
+    # items = [] pr ne pas ajouter ds main les 3 créations d'item ac append, un par un
 
     def __init__(self, my_map):
         """init item"""
@@ -17,35 +18,38 @@ class Item:
         self.random_x = ''  # ""
         self.random_y = ''  # ""
         self.items = []
-        #self.get_items_positions()
+        # self.get_items_positions()
         self.map = my_map
-        #self.add_items()
-        #Item.items.append(self) #s'auto ajoute à la liste items
+        # self.add_items()
+        # Item.items.append(self) #s'auto ajoute à la liste items
         self.img = pygame.image.load(conf.ITEM0).convert()
         self.img = pygame.transform.scale(self.img, (SPRITE_SIZE, SPRITE_SIZE))
         self.valid_positions = []
         self.get_valid_positions()
         self.set_position()
+        ###
+        self.show = True
 
-        #if 'needle'
-        #item0 = pygame.image.load(conf.ITEM0).convert()
-        #item0 = pygame.transform.scale(item0, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
+        # if 'needle'
+        # item0 = pygame.image.load(conf.ITEM0).convert()
+        # item0 = pygame.transform.scale(item0, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
 
     def get_valid_positions(self):
         """Method that creates a list of valid positions"""
-        #self.structure = structure_map
+        # self.structure = structure_map
 
-        #valid_positions = []
-        for y, line in enumerate(self.map.structure_map): #enum rec indice ds liste
+        # valid_positions = []
+        for y, line in enumerate(self.map.structure_map):  # enum rec indice ds liste
             for x, caract in enumerate(line):
                 if caract == 'o':
                     self.valid_positions.append((x, y))
 
-
-    def set_position(self):  #set car on met à jour
+    def set_position(self):  # set car on met à jour
         """Method that sets a random position from the valid_positions list"""
         self.random_x, self.random_y = random.choice(self.valid_positions)
 
+        self.random_x = self.random_x * SPRITE_SIZE
+        self.random_y = self.random_y * SPRITE_SIZE
 
 """    
         position = (self.random_x * SPRITE_SIZE, self.random_y * SPRITE_SIZE)

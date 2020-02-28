@@ -57,10 +57,7 @@ while main_loop:
     map.display(window)
 
     #Initializing the items
-    #item = Item(map)
-    #item.add_items(map.structure_map)
-
-
+    item = Item(map)
 
     #Initializing the hero
     hero = Hero(map.structure_map)
@@ -102,7 +99,7 @@ while main_loop:
         window.blit(map.paths, (0, 0))
         map.display(window)
         window.blit(hero_image, (hero.x, hero.y))
-        #window.blit(item.img, (item.random_x, item.random_y))
+        window.blit(item.img, (item.random_x, item.random_y))
         pygame.display.flip()
 
 
