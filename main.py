@@ -23,8 +23,7 @@ while main_loop:
     home = pygame.image.load(conf.HOME).convert()
     home = pygame.transform.scale(home, (conf.WINDOW_SIZE, conf.WINDOW_SIZE))
     window.blit(home, (0, 0)) #draws home image in window
-    hero_image = pygame.image.load(conf.HERO).convert()
-    hero_image = pygame.transform.scale(hero_image, (conf.SPRITE_SIZE, conf.SPRITE_SIZE))
+    #hero_image = pygame.image.load(conf.HERO).convert()
 
     #Refresh
     pygame.display.flip()
@@ -56,8 +55,29 @@ while main_loop:
 
     map.display(window)
 
+    hero_image = pygame.image.load(conf.HERO).convert()
+
     #Initializing the items
-    item = Item(map, conf.needle, conf.ether, conf.tube)
+    #item = map.create_items_list()
+    #map.create_items_list()
+    #print(map.items_list)
+    #items = [conf.needle, conf.ether, conf.tube]
+    #needle = Item(map, conf.needle)
+    #ether = Item(map, conf.ether)
+    #tube = Item(map, conf.tube)
+    #window.blit(needle, (needle.random_x, needle.random_y))
+
+    images = [conf.needle, conf.ether, conf.tube]
+    items_list = list()
+
+    for img in images:
+        item = Item(map, img)
+        items_list.append(item)
+
+    for item in items_list:
+        print(f'{item.img} => x={item.random_x}, y={item.random_y}')
+        #window.blit(item.img, (item.random_x, item.random_y))
+        pygame.display.flip()
 
     #Initializing the hero
     hero = Hero(map.structure_map)
@@ -66,8 +86,6 @@ while main_loop:
     #item = Item(map.structure_map)
 
     pygame.display.flip()
-
-
 
     #Game loop
     while game_loop:
@@ -85,7 +103,6 @@ while main_loop:
                 home_loop = False
                 game_loop = True
 
-
             #Hero's movements with keyboard
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                 hero.move('UP')
@@ -98,9 +115,12 @@ while main_loop:
 
         window.blit(map.paths, (0, 0))
         map.display(window)
+
+        # Displays items randomly
+        for item in items_list:
+            window.blit(item.img, (item.random_x, item.random_y))
+
+        # Displays hero randomly
         window.blit(hero_image, (hero.x, hero.y))
-        #window.blit(item.img, (item.random_x, item.random_y))
-        window.blit(item.obj1, (item.random_x, item.random_y))
-        window.blit(item.obj2, (item.random_x, item.random_y))
-        window.blit(item.obj3, (item.random_x, item.random_y))
+
         pygame.display.flip()
