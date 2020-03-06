@@ -129,3 +129,6 @@ while main_loop:
         for item in items_list:
             if (item.random_x, item.random_y) == (hero.x, hero.y):
                 items_list.remove(item)
+                # Icrease the inventory every time hero collects an item
+                hero.items_collected += 1
+                print(hero.items_collected)

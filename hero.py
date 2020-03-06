@@ -3,22 +3,18 @@
 
 #from map import Map
 from config import SPRITE_SIZE, NUMBER_SPRITE
-import pygame
+
 
 class Hero:
     """This class manages the hero Macgyver"""
 
-    def __init__(self, structure):  #position ou x et y?
+    def __init__(self, structure):
         self.x = 0
         self.y = 0
         self.caract_x = 0
         self.caract_y = 0
         self.structure = structure
-        self.items_collect = 0
-        #self.hero_img = pygame.image.load(HERO).convert_alpha()
-        #self.position = ()
-        #self.move()
-        #self.rect = self.image.get_rect()
+        self.items_collected = 0
 
 
     def move(self, direction):
