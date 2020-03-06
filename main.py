@@ -124,3 +124,8 @@ while main_loop:
         window.blit(hero_image, (hero.x, hero.y))
 
         pygame.display.flip()
+
+        # Removes item from items_list when hero passes over
+        for item in items_list:
+            if (item.random_x, item.random_y) == (hero.x, hero.y):
+                items_list.remove(item)
