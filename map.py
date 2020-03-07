@@ -43,7 +43,7 @@ class Map:
         """Method that displays the graphic part of the map"""
 
         walls = pygame.image.load(conf.WALLS).convert() #Loads the image
-        self.paths = pygame.image.load(conf.BACKGROUND).convert()
+        self.paths = pygame.image.load(conf.PATHS).convert()
         arrival = pygame.image.load(conf.GUARDIAN).convert_alpha()
 
         pygame.display.set_caption("Macgyver Labyrinth Game")

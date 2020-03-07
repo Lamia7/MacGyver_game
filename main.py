@@ -13,7 +13,7 @@ pygame.init()
 #Displays window
 window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
 #Displays title of window
-pygame.display.set_caption("Macgyver Labyrinth Game")
+pygame.display.set_caption(conf.MAIN_TITLE)
 
 main_loop = True
 
@@ -39,6 +39,9 @@ while main_loop:
         #Speed loop limit
         pygame.time.Clock().tick(30)
 
+        #Title of the window
+        pygame.display.set_caption(conf.MAIN_TITLE)
+
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 home_loop = False
@@ -47,6 +50,8 @@ while main_loop:
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 home_loop = False
                 game_loop = True
+                window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_HEIGHT))  # size of the window
+                #window.fill((30, 28, 30))
 
         pygame.display.flip()
 
@@ -54,7 +59,7 @@ while main_loop:
     map = Map()
     map.display(window)
 
-    #Initializing the hero
+    # Initializing the hero
     hero_image = pygame.image.load(conf.HERO).convert()
 
     #Initializing the items
@@ -118,10 +123,11 @@ while main_loop:
                 hero.items_collected += 1
                 print(hero.items_collected)
 
+
+
         # Win_game
 
         # When hero meets the guardian, game is over
-        #PROBLEM
         if (hero.x, hero.y) == map.guardian_pos:
 
             # If hero has found all 3 items : he wins
@@ -134,13 +140,10 @@ while main_loop:
                 if hero.items_collected < 3:
                     lost_page = True
 
-
             if win_page:
-                #game_loop = False
                 window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
                 pygame.display.set_caption("YAY! You did it!")
                 end_page = pygame.image.load(conf.WIN_IMG).convert()
-                #window.blit(conf.WIN_IMG, (0, 0))
                 window.blit(pygame.transform.scale(end_page, (conf.WINDOW_SIZE, conf.WINDOW_SIZE)), (0, 0))
 
                 pygame.display.flip()
@@ -161,3 +164,17 @@ while main_loop:
                         home_loop = True
                         lost_page = False
                         win_page = False
+
+
+"""
+                pygame.font.init()
+                font = pygame.font.SysFont('comicsans', 40, True)
+                text = font.render(
+                    "Items recovered : " + str(hero.items_collected),
+                    1,
+                    (255, 255, 255))
+
+                #window.blit(text, (500, conf.WINDOW_HEIGHT))
+                window.blit(text, (40, 630))
+                pygame.display.flip()
+                """

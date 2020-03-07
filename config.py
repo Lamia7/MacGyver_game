@@ -6,6 +6,7 @@
 # Images
 HOME = "images/home.png"
 BACKGROUND = "images/background.jpg"
+PATHS = "images/paths.jpg"
 WALLS = "images/walls.png"
 HERO = "images/hero.png"
 GUARDIAN = "images/guardian.png"
@@ -18,4 +19,6 @@ GAME_OVER_IMG = "images/lost.png"
 #Screen
 SPRITE_SIZE = 30
 NUMBER_SPRITE = 15
+MAIN_TITLE = "Macgyver Labyrinth Game"
 WINDOW_SIZE = SPRITE_SIZE * NUMBER_SPRITE
+WINDOW_HEIGHT = (SPRITE_SIZE * NUMBER_SPRITE) + (SPRITE_SIZE * 2)
