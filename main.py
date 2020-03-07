@@ -23,7 +23,6 @@ while main_loop:
     home = pygame.image.load(conf.HOME).convert()
     home = pygame.transform.scale(home, (conf.WINDOW_SIZE, conf.WINDOW_SIZE))
     window.blit(home, (0, 0)) #draws home image in window
-    #hero_image = pygame.image.load(conf.HERO).convert()
 
     #Refresh
     pygame.display.flip()
@@ -31,6 +30,8 @@ while main_loop:
     #Making these variables true at every loop
     game_loop = True
     home_loop = True
+    win_page = False
+    lost_page = False
 
     #Home loop that listens to events to know if game_loop starts or not
     while home_loop:
@@ -51,22 +52,12 @@ while main_loop:
 
     #Initializing the map
     map = Map()
-    #map.load_from_file()
-
     map.display(window)
 
+    #Initializing the hero
     hero_image = pygame.image.load(conf.HERO).convert()
 
     #Initializing the items
-    #item = map.create_items_list()
-    #map.create_items_list()
-    #print(map.items_list)
-    #items = [conf.needle, conf.ether, conf.tube]
-    #needle = Item(map, conf.needle)
-    #ether = Item(map, conf.ether)
-    #tube = Item(map, conf.tube)
-    #window.blit(needle, (needle.random_x, needle.random_y))
-
     images = [conf.needle, conf.ether, conf.tube]
     items_list = list()
 
@@ -76,21 +67,15 @@ while main_loop:
 
     for item in items_list:
         print(f'{item.img} => x={item.random_x}, y={item.random_y}')
-        #window.blit(item.img, (item.random_x, item.random_y))
         pygame.display.flip()
 
     #Initializing the hero
     hero = Hero(map.structure_map)
 
-    #Init item
-    #item = Item(map.structure_map)
-
     pygame.display.flip()
 
     #Game loop
     while game_loop:
-
-        #window.fill((0, 0, 0))
 
         # Speed loop limit
         pygame.time.Clock().tick(30)
@@ -103,7 +88,7 @@ while main_loop:
                 home_loop = False
                 game_loop = True
 
-            #Hero's movements with keyboard
+            # Hero's movements with keyboard
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                 hero.move('UP')
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
@@ -132,3 +117,47 @@ while main_loop:
                 # Icrease the inventory every time hero collects an item
                 hero.items_collected += 1
                 print(hero.items_collected)
+
+        # Win_game
+
+        # When hero meets the guardian, game is over
+        #PROBLEM
+        if (hero.x, hero.y) == map.guardian_pos:
+
+            # If hero has found all 3 items : he wins
+            if hero.items_collected == 3:
+                win_page = True
+
+            # Lost_game
+            else:
+                # If hero 1 or more items missing : he looses
+                if hero.items_collected < 3:
+                    lost_page = True
+
+
+            if win_page:
+                #game_loop = False
+                window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
+                pygame.display.set_caption("YAY! You did it!")
+                end_page = pygame.image.load(conf.WIN_IMG).convert()
+                #window.blit(conf.WIN_IMG, (0, 0))
+                window.blit(pygame.transform.scale(end_page, (conf.WINDOW_SIZE, conf.WINDOW_SIZE)), (0, 0))
+
+                pygame.display.flip()
+
+            if lost_page:
+                pygame.display.set_caption("Game over! You didn't find all the items...")
+                window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
+                end_page = pygame.image.load(conf.GAME_OVER_IMG).convert()
+                window.blit(pygame.transform.scale(end_page, (conf.WINDOW_SIZE, conf.WINDOW_SIZE)), (0, 0))
+
+                pygame.display.flip()
+
+            while lost_page or win_page:
+                for event in pygame.event.get():
+                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                        game_loop = False
+                        main_loop = True
+                        home_loop = True
+                        lost_page = False
+                        win_page = False

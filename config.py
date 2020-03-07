@@ -12,10 +12,8 @@ GUARDIAN = "images/guardian.png"
 needle = "images/needle.png"
 ether = "images/ether.png"
 tube = "images/tube.png"
-
-"""items = {"ether": "images/needle.png",
-         "needle": "images/needle.png",
-         "tube": "images/tube.png"}"""
+WIN_IMG = "images/win.jpeg"
+GAME_OVER_IMG = "images/lost.png"
 
 #Screen
 SPRITE_SIZE = 30

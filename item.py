@@ -40,34 +40,3 @@ class Item:
         self.random_x = self.random_x * SPRITE_SIZE
         self.random_y = self.random_y * SPRITE_SIZE
 
-
-
-"""    
-        position = (self.random_x * SPRITE_SIZE, self.random_y * SPRITE_SIZE)
-        return position
-
-        def add_items(self, structure_map):       
-        self.structure = structure_map
-
-        i = True
-        while i:
-random_x = random.randint(0, len(self.structure) - 1)
-random_y = random.randint(1, len(self.structure[0]) - 2)
-
-    def add_items(self):
-
-        while True:
-            random_x = random.randint(0, self.map.structure_map.x)
-            random_y = random.randint(0, self.map.structure_map.y)
-            if self.map.structure_map[random_x][random_y] == "o":
-                self.map.structure_map[random_x][random_y] = "I" + str(self.i)
-                break
-
-
-        while True:
-            self.random_x, self.random_y = random.choice(valid_positions)
-            item_positions = []  #liste de position d'items déjà positionés
-            for item in self.items:
-                item_positions.append((item.random_x, item.random_y))  #accède à attribut de l'obj
-            if (self.random_x, self.random_y) not in item_positions:  #si position pas déjà prise
-                break       """
