@@ -10,48 +10,51 @@ from item import Item
 
 pygame.init()
 
-#Displays window
+# Displays window
 window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
-#Displays title of window
+# Displays title of window
 pygame.display.set_caption(conf.MAIN_TITLE)
 
 main_loop = True
 
-#Main loop
+# Main loop
 while main_loop:
-    #Loads and displays homepage
+    # Loads and displays homepage
     home = pygame.image.load(conf.HOME).convert()
     home = pygame.transform.scale(home, (conf.WINDOW_SIZE, conf.WINDOW_SIZE))
-    window.blit(home, (0, 0)) #draws home image in window
+    window.blit(home, (0, 0))  # draws home image in window
 
-    #Refresh
+    # Refresh
     pygame.display.flip()
 
-    #Making these variables true at every loop
+    # Making these variables true at every loop
     game_loop = True
     home_loop = True
     win_page = False
     lost_page = False
 
-    #Home loop that listens to events to know if game_loop starts or not
+    # Home loop that listens to events to know if game_loop starts or not
     while home_loop:
 
-        #Speed loop limit
-        pygame.time.Clock().tick(30)
+        # Speed loop limit
+        pygame.time.Clock().tick(30) #ds constructeur
 
-        #Title of the window
+        # Title of the window
         pygame.display.set_caption(conf.MAIN_TITLE)
 
+    #while True:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 home_loop = False
-                game_loop = False
-                main_loop = False
+                #game_loop = False
+                #main_loop = False
+                ##break
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 home_loop = False
                 game_loop = True
-                window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_HEIGHT))  # size of the window
-                #window.fill((30, 28, 30))
+                ##break
+                window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_HEIGHT))  # dans méthode game_page
+                # window.fill((30, 28, 30))
 
         pygame.display.flip()
 
@@ -123,23 +126,23 @@ while main_loop:
                 hero.items_collected += 1
                 print(hero.items_collected)
 
-
-
-        # Win_game
+        # ===========================
+        # Winning or loosing the game
+        # ===========================
 
         # When hero meets the guardian, game is over
         if (hero.x, hero.y) == map.guardian_pos:
 
-            # If hero has found all 3 items : he wins
+            # If hero has found all 3 items : MACGYVER WINS THE GAME
             if hero.items_collected == 3:
                 win_page = True
 
-            # Lost_game
             else:
-                # If hero 1 or more items missing : he looses
+                # If hero 1 or more items missing : MACGYVER LOOSES THE GAME
                 if hero.items_collected < 3:
                     lost_page = True
 
+            #  Displaying the win_page
             if win_page:
                 window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
                 pygame.display.set_caption("YAY! You did it!")
@@ -148,6 +151,7 @@ while main_loop:
 
                 pygame.display.flip()
 
+            # Displaying the lost_page
             if lost_page:
                 pygame.display.set_caption("Game over! You didn't find all the items...")
                 window = pygame.display.set_mode((conf.WINDOW_SIZE, conf.WINDOW_SIZE))
