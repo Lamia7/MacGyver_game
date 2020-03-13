@@ -5,7 +5,6 @@
 
 # Images
 HOME = "images/home.png"
-BACKGROUND = "images/background.png"
 PATHS = "images/paths.jpg"
 WALLS = "images/walls.png"
 HERO = "images/hero.png"
