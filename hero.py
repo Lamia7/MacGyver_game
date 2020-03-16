@@ -31,7 +31,7 @@ class Hero:
 
         # MOVE DOWN
         if direction == 'DOWN':
-            if self.caract_y < (NUMBER_SPRITE -1):
+            if self.caract_y < (NUMBER_SPRITE - 1):
                 if self.structure[self.caract_y + 1][self.caract_x] != 'T':
                     self.caract_y += 1
                     self.y = self.caract_y * SPRITE_SIZE
@@ -45,7 +45,7 @@ class Hero:
 
         # MOVE RIGHT
         if direction == 'RIGHT':
-            if self.caract_x < (NUMBER_SPRITE -1):
+            if self.caract_x < (NUMBER_SPRITE - 1):
                 if self.structure[self.caract_y][self.caract_x+1] != 'T':
                     self.caract_x += 1
                     self.x = self.caract_x * SPRITE_SIZE

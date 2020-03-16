@@ -14,7 +14,7 @@ class Map:
 
     def __init__(self):
         self.structure_map = []
-        self.paths = pygame.image.load(conf.BACKGROUND).convert()
+        self.paths = pygame.image.load(conf.PATHS).convert()
         self.items_list = []
         self.item_numbers = 3
         self.x = 0
@@ -33,6 +33,7 @@ class Map:
                 for caract in lines:  # goes through sprites of each line
                     if caract != '\n':
                         lines_list.append(caract)
+                self.structure_map.append(lines_list)
 
     def display(self, window):
         """Method that displays the graphic part of the map according to map structure and positions"""
@@ -44,13 +45,11 @@ class Map:
 
         pygame.display.set_caption(conf.MAIN_TITLE)
 
-
         # Displays images according to map structure and positions
         for y, line_list in enumerate(self.structure_map):
 
             for x, caract in enumerate(line_list):
 
-                #print((x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE), y)
                 if caract == 'T':
                     window.blit(walls, (x * conf.SPRITE_SIZE, y * conf.SPRITE_SIZE))
                 elif caract == 'A':
