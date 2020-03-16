@@ -1,6 +1,8 @@
 # OC Project 3: Macgyver game using Python
 
-This is a game from the an Openclassrooms project : https://openclassrooms.com/fr/projects/156/assignment
+This is a game from the an Openclassrooms project : 
+
+https://openclassrooms.com/fr/projects/156/assignment
 
 ## Description
 
@@ -16,14 +18,15 @@ To control his movements, you have to use the keyboard directional keys: ⬅️ 
 MacGyver collects an item simply by moving on it.
 
 If MacGyver has collected all the items when he meets the guard : HE WINS.
+
 If he misses at least one item : HE LOSES.
 
 The program is standalone, it can be run on any computer.
 
 CONSTRAINTS 
-Using Git and publish it on Github. 
-Following the best practices of PEP 8 and develop in a virtual environment using Python 3. 
-Coding in English: name of variables, comments, functions...
+* Using Git and publish it on Github. 
+* Following the best practices of PEP 8 and develop in a virtual environment using Python 3. 
+* Coding in English: name of variables, comments, functions...
 
 ## Installation
 To install this game you need :
@@ -31,12 +34,16 @@ To install this game you need :
 * PyGame library : https://www.pygame.org/wiki/GettingStarted
 
 Clone this repository by running this command on your terminal :
+
 `git clone https://github.com/Lamia7/MacGyver_game.git`
+
 Then install the virtual environment :
+
 `pip install virtualenv`
 
 ## To play
 Run this file to start playing :
+
 `main.py`
  
 ## IDE used to create it
