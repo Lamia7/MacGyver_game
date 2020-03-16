@@ -46,7 +46,7 @@ class Game:
         # Home loop that listens to events to know if game_loop starts or not
         while True:
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
                     self.home_page = False
                     self.game_page = False
                     return False
@@ -83,7 +83,7 @@ class Game:
         while True:
 
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
                     self.game_page = False
                     return False
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
@@ -164,7 +164,7 @@ class Game:
 
             while self.final_page:
                 for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
                         self.home_page = True
                         self.final_page = False
                         return False
