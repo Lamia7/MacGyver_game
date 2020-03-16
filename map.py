@@ -19,7 +19,7 @@ class Map:
         self.item_numbers = 3
         self.x = 0
         self.y = 0
-        self.load_from_file()  # pr faire appel à load dès que j'appelle Map()
+        self.load_from_file()
         self.items_positions = []
         self.guardian_pos = 0
 
@@ -27,7 +27,6 @@ class Map:
         """Method that generates the map from the file that contains the level"""
 
         with open("level1.txt", "r") as file:  # opens the level1 file
-            # structure_map = []  # contient la liste principale
             for lines in file:  # goes through lines in the file
                 lines_list = []  # stores the lines in a lines' list variable
                 for caract in lines:  # goes through sprites of each line

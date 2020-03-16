@@ -15,7 +15,7 @@ tube = "images/tube.png"
 WIN_IMG = "images/win.jpeg"
 GAME_OVER_IMG = "images/lost.png"
 
-#Screen
+# Screen
 SPRITE_SIZE = 30
 NUMBER_SPRITE = 15
 MAIN_TITLE = "Macgyver Labyrinth Game"

@@ -37,7 +37,7 @@ class Game:
         # Loads and displays homepage
         home = pygame.image.load(conf.HOME).convert()
         home = pygame.transform.scale(home, (conf.MAZE_SIZE, conf.MAZE_SIZE))
-        window.blit(home, (0, 0))  # draws home image in window
+        window.blit(home, (0, 0))  # Draws home image in window
         pygame.display.set_caption(conf.MAIN_TITLE)  # Title of the window
 
         # Refresh
